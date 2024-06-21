@@ -23,14 +23,10 @@ export function Signup() {
       setSuccessMessage('Registration successful. Please log in.');
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         setErrorMessage(error.response.data.message);
       } else if (error.request) {
-        // The request was made but no response was received
         setErrorMessage('No response received from the server. Please try again later.');
       } else {
-        // Something happened in setting up the request that triggered an Error
         setErrorMessage('An error occurred. Please try again.');
       }
     }
@@ -82,8 +78,8 @@ export function Signup() {
         </div>
         <button type="submit">Signup</button>
       </form>
-      {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
-      {successMessage && <p style={{color: 'green'}}>{successMessage}</p>}
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
     </div>
   );
 }

@@ -16,17 +16,19 @@ export function Login() {
         password,
       });
       localStorage.setItem('token', response.data.access_token);
-      navigate('/dashboard');
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+
+      if (response.data.user.is_admin) {
+        navigate('/admin-dashboard');
+      } else {
+        navigate('/user-dashboard');
+      }
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         setErrorMessage(error.response.data.message);
       } else if (error.request) {
-        // The request was made but no response was received
         setErrorMessage('No response received from the server. Please try again later.');
       } else {
-        // Something happened in setting up the request that triggered an Error
         setErrorMessage('An error occurred. Please try again.');
       }
     }
@@ -54,7 +56,7 @@ export function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
-      {errorMessage && <p style={{color: 'red'}}>{errorMessage}</p>}
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
 }

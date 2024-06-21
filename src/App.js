@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './components/auth/Login';
 import { Signup } from './components/auth/Signup';
+import AdminDashboard from './components/AdminDashboard';
+import UserDashboard from './components/UserDashboard';
 import { Courses } from './components/courses/Courses';
 import { CreateCourse } from './components/courses/CreateCourse';
 import { UpdateCourse } from './components/courses/UpdateCourse';
@@ -25,6 +27,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/user-dashboard" element={<UserDashboard />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/create" element={<CreateCourse />} />
             <Route path="/courses/:id/update" element={<UpdateCourse />} />
