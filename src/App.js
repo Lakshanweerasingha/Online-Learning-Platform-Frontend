@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './components/auth/Login';
 import { Signup } from './components/auth/Signup';
-import AdminDashboard from './components/AdminDashboard';
-import UserDashboard from './components/UserDashboard';
+import { AdminDashboard } from './components/AdminDashboard';
+import { UserDashboard } from './components/UserDashboard';
 import { Courses } from './components/courses/Courses';
 import { CreateCourse } from './components/courses/CreateCourse';
 import { UpdateCourse } from './components/courses/UpdateCourse';
@@ -15,6 +15,9 @@ import { Enrollments } from './components/enrollments/Enrollments';
 import { CreateEnrollment } from './components/enrollments/CreateEnrollment';
 import { UpdateEnrollment } from './components/enrollments/UpdateEnrollment';
 import { DeleteEnrollment } from './components/enrollments/DeleteEnrollment';
+import { UserEnrollment } from './components/enrollments/UserEnrollment';
+
+
 
 function App() {
   return (
@@ -41,6 +44,8 @@ function App() {
             <Route path="/enrollments/create" element={<CreateEnrollment />} />
             <Route path="/enrollments/:id/update" element={<UpdateEnrollment />} />
             <Route path="/enrollments/:id/delete" element={<DeleteEnrollment />} />
+            <Route path="/user/:id/enrollments" element={<UserEnrollment />} />
+
 
             {/* Add more routes as needed */}
           </Routes>

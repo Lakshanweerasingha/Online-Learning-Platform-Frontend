@@ -1,13 +1,13 @@
-// AdminDashboard.js
 import React from 'react';
+import { Courses } from './courses/Courses'; // Adjust the import path as needed
+import { Enrollments } from './enrollments/Enrollments'; // Adjust the import path as needed
 
-const AdminDashboard = () => {
+export const AdminDashboard = () => {
   return (
     <div>
       <h2>Admin Dashboard</h2>
-      {/* Add admin dashboard content here */}
+      <Courses />
+      <Enrollments />
     </div>
   );
 };
-
-export default AdminDashboard;

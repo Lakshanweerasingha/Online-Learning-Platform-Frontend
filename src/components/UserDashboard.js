@@ -1,13 +1,13 @@
-// UserDashboard.js
 import React from 'react';
+import { UserEnrollment } from './enrollments/UserEnrollment'; // Adjust the import path as needed
+import { CourseUser } from './courses/CourseUser'; // Adjust the import path as needed
 
-const UserDashboard = () => {
+export const UserDashboard = () => {
   return (
     <div>
       <h2>User Dashboard</h2>
-      {/* Add user dashboard content here */}
+      <UserEnrollment />
+      <CourseUser />
     </div>
   );
 };
-
-export default UserDashboard;
