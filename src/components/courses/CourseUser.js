@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/courses/CourseUser.css'; // Import your CSS file here
 
 export function CourseUser() {
   const [courses, setCourses] = useState([]);
@@ -25,9 +26,9 @@ export function CourseUser() {
   }, []);
 
   return (
-    <div>
+    <div className="course-user-container">
       <h1>Courses</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <table>
         <thead>
           <tr>

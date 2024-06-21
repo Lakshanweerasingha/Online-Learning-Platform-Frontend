@@ -1,0 +1,13 @@
+/* Button styling */
+.delete-enrollment-button {
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.delete-enrollment-button:hover {
+  background-color: #c82333;
+}

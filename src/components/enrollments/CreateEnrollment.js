@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/enrollments/CreateEnrollment.css'; // Import your CSS file here
 
 export function CreateEnrollment({ onEnrollmentCreated }) {
   const [users, setUsers] = useState([]);
@@ -52,13 +53,17 @@ export function CreateEnrollment({ onEnrollmentCreated }) {
   };
 
   return (
-    <div>
+    <div className="create-enrollment-container">
       <h2>Create Enrollment</h2>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>User:</label>
-          <select value={selectedUser} onChange={(e) => setSelectedUser(e.target.value)} required>
+          <select
+            value={selectedUser}
+            onChange={(e) => setSelectedUser(e.target.value)}
+            required
+          >
             <option value="">Select a user</option>
             {users.map((user) => (
               <option key={user.id} value={user.id}>
@@ -67,9 +72,13 @@ export function CreateEnrollment({ onEnrollmentCreated }) {
             ))}
           </select>
         </div>
-        <div>
+        <div className="form-group">
           <label>Course:</label>
-          <select value={selectedCourse} onChange={(e) => setSelectedCourse(e.target.value)} required>
+          <select
+            value={selectedCourse}
+            onChange={(e) => setSelectedCourse(e.target.value)}
+            required
+          >
             <option value="">Select a course</option>
             {courses.map((course) => (
               <option key={course.id} value={course.id}>
@@ -78,7 +87,9 @@ export function CreateEnrollment({ onEnrollmentCreated }) {
             ))}
           </select>
         </div>
-        <button type="submit">Create Enrollment</button>
+        <button className="create-enrollment-button" type="submit">
+          Create Enrollment
+        </button>
       </form>
     </div>
   );

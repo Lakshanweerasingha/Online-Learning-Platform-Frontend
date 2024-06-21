@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/courses/DeleteCourse.css'; // Import your CSS file here
 
 export function DeleteCourse({ courseId, onDelete }) {
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,12 +21,11 @@ export function DeleteCourse({ courseId, onDelete }) {
   };
 
   return (
-    <div>
+    <div className="delete-course-container">
       <h2>Delete Course</h2>
-      <p>Are you sure you want to delete this course?</p>
-      <button onClick={handleDelete}>Delete</button>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      <p className="delete-course-text">Are you sure you want to delete this course?</p>
+      <button className="delete-button" onClick={handleDelete}>Delete</button>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }
-

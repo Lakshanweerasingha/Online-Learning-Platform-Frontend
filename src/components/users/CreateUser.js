@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../axios'; // Adjust import path as needed
+import '../Css/users/CreateUser.css'; // Import your CSS file here
 
 export function CreateUser({ onUserCreated }) {
   const [formData, setFormData] = useState({
@@ -29,7 +30,6 @@ export function CreateUser({ onUserCreated }) {
         email: '',
         phone: '',
         password: '',
-
       });
     } catch (error) {
       console.error('Error creating user:', error);
@@ -37,55 +37,60 @@ export function CreateUser({ onUserCreated }) {
   };
 
   return (
-    <div>
+    <div className="create-user-container">
       <h3>Create User</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <form onSubmit={handleSubmit} className="user-form">
+        <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
             name="first_name"
             value={formData.first_name}
             onChange={handleChange}
+            className="form-control"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name:</label>
           <input
             type="text"
             name="last_name"
             value={formData.last_name}
             onChange={handleChange}
+            className="form-control"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
+            className="form-control"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Phone:</label>
           <input
             type="text"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
+            className="form-control"
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
-            type="text"
+            type="password"
             name="password"
             value={formData.password}
             onChange={handleChange}
+            className="form-control"
           />
         </div>
-        <button type="submit">Create User</button>
+        <button type="submit" className="btn-submit">Create User</button>
       </form>
     </div>
   );

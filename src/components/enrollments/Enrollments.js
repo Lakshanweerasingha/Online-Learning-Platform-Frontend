@@ -3,6 +3,7 @@ import axios from '../../axios'; // Adjust the import path as needed
 import { CreateEnrollment } from './CreateEnrollment';
 import { UpdateEnrollment } from './UpdateEnrollment';
 import { DeleteEnrollment } from './DeleteEnrollment';
+import '../Css/enrollments/Enrollments.css'; // Import your CSS file here
 
 export function Enrollments() {
   const [enrollments, setEnrollments] = useState([]);
@@ -14,18 +15,22 @@ export function Enrollments() {
         const response = await axios.get('/enrollments');
         setEnrollments(response.data.enrollments || []); // Ensure to handle empty array if no enrollments
       } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else if (error.request) {
-          setErrorMessage('No response received from the server. Please try again later.');
-        } else {
-          setErrorMessage('An error occurred. Please try again.');
-        }
+        handleApiError(error);
       }
     };
 
     fetchData();
   }, []);
+
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
 
   const handleEnrollmentCreated = (newEnrollment) => {
     setEnrollments([...enrollments, newEnrollment]);
@@ -44,11 +49,11 @@ export function Enrollments() {
   };
 
   return (
-    <div>
+    <div className="enrollments-container">
       <h1>Enrollments</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <CreateEnrollment onEnrollmentCreated={handleEnrollmentCreated} />
-      <table>
+      <table className="enrollments-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -63,7 +68,7 @@ export function Enrollments() {
               <td>{enrollment.id}</td>
               <td>{enrollment.user ? `${enrollment.user.first_name} ${enrollment.user.last_name}` : 'Unknown User'}</td>
               <td>{enrollment.course ? enrollment.course.name : 'Unknown Course'}</td>
-              <td>
+              <td className="enrollments-actions">
                 <UpdateEnrollment enrollmentId={enrollment.id} onUpdate={handleEnrollmentUpdated} />
                 <DeleteEnrollment enrollmentId={enrollment.id} onDelete={handleEnrollmentDeleted} />
               </td>

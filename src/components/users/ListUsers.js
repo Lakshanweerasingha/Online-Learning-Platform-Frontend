@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../../axios'; // Adjust import path as needed
 import { EditUser } from './EditUser'; // Adjust import path as needed
 import { CreateUser } from './CreateUser'; // Adjust import path as needed
+import '../Css/users/ListUsers.css'; // Import your CSS file here
 
 export function ListUsers() {
   const [users, setUsers] = useState([]);
@@ -70,10 +71,10 @@ export function ListUsers() {
   };
 
   return (
-    <div>
+    <div className="users-container">
       <h1>Users</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <table>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <table className="users-table">
         <thead>
           <tr>
             <th>ID</th>
@@ -92,7 +93,7 @@ export function ListUsers() {
               <td>{user.last_name}</td>
               <td>{user.email}</td>
               <td>{user.phone}</td>
-              <td>
+              <td className="users-actions">
                 <button onClick={() => handleEditUser(user.id)}>Edit</button>
                 <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
               </td>
@@ -100,11 +101,11 @@ export function ListUsers() {
           ))}
         </tbody>
       </table>
-      <button onClick={handleToggleCreateForm}>Create User</button>
+      <button className="create-user-button" onClick={handleToggleCreateForm}>Create User</button>
 
       {showCreateForm && (
         <CreateUser
-          onCreate={handleCreateUser}
+          onUserCreated={handleCreateUser}
           onCancel={() => setShowCreateForm(false)}
         />
       )}

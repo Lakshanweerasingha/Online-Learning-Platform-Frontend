@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios'; // Adjust import path as needed
+import '../Css/users/EditUser.css'; // Import your CSS file here
 
 export function EditUser({ userId, onUpdate }) {
   const [formData, setFormData] = useState({
@@ -7,7 +8,7 @@ export function EditUser({ userId, onUpdate }) {
     last_name: '',
     email: '',
     phone: '',
-    password: '', // Add password field if needed
+    password: '',
   });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -18,20 +19,24 @@ export function EditUser({ userId, onUpdate }) {
         const { first_name, last_name, email, phone } = response.data;
         setFormData({ first_name, last_name, email, phone });
       } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else if (error.request) {
-          setErrorMessage('No response received from the server. Please try again later.');
-        } else {
-          setErrorMessage('An error occurred. Please try again.');
-        }
+        handleApiError(error);
       }
     };
 
-    if (userId) { // Ensure userId is defined before fetching data
+    if (userId) {
       fetchUser();
     }
   }, [userId]);
+
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,24 +56,18 @@ export function EditUser({ userId, onUpdate }) {
         last_name: '',
         email: '',
         phone: '',
-        password: '', // Clear password field after update
+        password: '',
       });
     } catch (error) {
-      if (error.response) {
-        setErrorMessage(error.response.data.message);
-      } else if (error.request) {
-        setErrorMessage('No response received from the server. Please try again later.');
-      } else {
-        setErrorMessage('An error occurred. Please try again.');
-      }
+      handleApiError(error);
     }
   };
 
   return (
-    <div>
+    <div className="edit-user-container">
       <h2>Edit User</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>First Name:</label>
           <input
             type="text"
@@ -78,7 +77,7 @@ export function EditUser({ userId, onUpdate }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Last Name:</label>
           <input
             type="text"
@@ -88,7 +87,7 @@ export function EditUser({ userId, onUpdate }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Email:</label>
           <input
             type="email"
@@ -98,7 +97,7 @@ export function EditUser({ userId, onUpdate }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Phone:</label>
           <input
             type="text"
@@ -107,8 +106,7 @@ export function EditUser({ userId, onUpdate }) {
             onChange={handleChange}
           />
         </div>
-        <div>
-          {/* Add password field if needed */}
+        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"
@@ -117,9 +115,9 @@ export function EditUser({ userId, onUpdate }) {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Update User</button>
+        <button type="submit" className="btn-update-user">Update User</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }

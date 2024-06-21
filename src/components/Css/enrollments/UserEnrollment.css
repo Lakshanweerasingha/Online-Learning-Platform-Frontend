@@ -1,0 +1,41 @@
+/* Container styling */
+.user-enrollment-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Table styling */
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.enrollments-table th,
+.enrollments-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.enrollments-table th {
+  background-color: #f2f2f2;
+}
+
+.enrollments-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.enrollments-table tbody tr:hover {
+  background-color: #e0e0e0;
+}

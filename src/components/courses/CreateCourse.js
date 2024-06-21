@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/courses/CreateCourse.css'; // Import your CSS file here
 
 export function CreateCourse({ onCourseCreated }) {
   const [name, setName] = useState('');
@@ -29,21 +30,23 @@ export function CreateCourse({ onCourseCreated }) {
   };
 
   return (
-    <div>
+    <div className="create-course-container">
       <h2>Create Course</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+        <div className="form-group">
+          <label htmlFor="name">Name:</label>
           <input
+            id="name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Description:</label>
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
           <input
+            id="description"
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -51,8 +54,7 @@ export function CreateCourse({ onCourseCreated }) {
         </div>
         <button type="submit">Create</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }
-

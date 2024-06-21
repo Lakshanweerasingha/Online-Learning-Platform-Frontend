@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
 import { CreateCourse } from './CreateCourse';
 import { UpdateCourse } from './UpdateCourse';
-import { DeleteCourse }  from './DeleteCourse';
+import { DeleteCourse } from './DeleteCourse';
+import '../Css/courses/Courses.css'; // Import your CSS file here
 
 export function Courses() {
   const [courses, setCourses] = useState([]);
@@ -44,34 +45,37 @@ export function Courses() {
   };
 
   return (
-    <div>
+    <div className="courses-container">
       <h1>Courses</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <CreateCourse onCourseCreated={handleCourseCreated} />
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map((course) => (
-            <tr key={course.id}>
-              <td>{course.id}</td>
-              <td>{course.name}</td>
-              <td>{course.description}</td>
-              <td>
-                <UpdateCourse courseId={course.id} onUpdate={handleCourseUpdated} />
-                <DeleteCourse courseId={course.id} onDelete={handleCourseDeleted} />
-              </td>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <div className="courses-table">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {courses.map((course) => (
+              <tr key={course.id}>
+                <td>{course.id}</td>
+                <td>{course.name}</td>
+                <td>{course.description}</td>
+                <td>
+                  <div className="actions">
+                    <UpdateCourse courseId={course.id} onUpdate={handleCourseUpdated} />
+                    <DeleteCourse courseId={course.id} onDelete={handleCourseDeleted} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
-

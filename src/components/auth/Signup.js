@@ -1,5 +1,8 @@
+// Signup.js
+
 import React, { useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/auth/signup.css'; // Import your CSS file here
 
 export function Signup() {
   const [firstName, setFirstName] = useState('');
@@ -33,9 +36,9 @@ export function Signup() {
   };
 
   return (
-    <div>
+    <div className="signup-container">
       <h2>Signup</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label>
           <input
@@ -78,8 +81,8 @@ export function Signup() {
         </div>
         <button type="submit">Signup</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
   );
 }

@@ -1,0 +1,46 @@
+/* Container styling */
+.delete-course-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styling */
+.delete-course-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Text styling */
+.delete-course-container .delete-course-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.delete-course-container .delete-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.delete-course-container .delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Error message styling */
+.delete-course-container .error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+}

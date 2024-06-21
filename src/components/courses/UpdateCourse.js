@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/courses/UpdateCourse.css'; // Import your CSS file here
 
 export function UpdateCourse({ courseId, onUpdate }) {
   const [name, setName] = useState('');
@@ -13,43 +14,41 @@ export function UpdateCourse({ courseId, onUpdate }) {
         setName(response.data.name);
         setDescription(response.data.description);
       } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else if (error.request) {
-          setErrorMessage('No response received from the server. Please try again later.');
-        } else {
-          setErrorMessage('An error occurred. Please try again.');
-        }
+        handleApiError(error);
       }
     };
 
     fetchCourse();
   }, [courseId]);
 
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/courses/${courseId}`, {
+      const response = await axios.put(`/courses/${courseId}`, {
         name,
         description,
       });
       onUpdate({ id: courseId, name, description }); // Notify parent component about the update
     } catch (error) {
-      if (error.response) {
-        setErrorMessage(error.response.data.message);
-      } else if (error.request) {
-        setErrorMessage('No response received from the server. Please try again later.');
-      } else {
-        setErrorMessage('An error occurred. Please try again.');
-      }
+      handleApiError(error);
     }
   };
 
   return (
-    <div>
+    <div className="update-course-container">
       <h2>Update Course</h2>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Name:</label>
           <input
             type="text"
@@ -58,7 +57,7 @@ export function UpdateCourse({ courseId, onUpdate }) {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Description:</label>
           <input
             type="text"
@@ -66,10 +65,9 @@ export function UpdateCourse({ courseId, onUpdate }) {
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <button type="submit">Update</button>
+        <button className="update-button" type="submit">Update</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }
-

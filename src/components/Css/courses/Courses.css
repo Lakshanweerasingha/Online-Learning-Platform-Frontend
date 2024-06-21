@@ -1,52 +1,48 @@
-/* Login.css */
-
-.login-container {
-    width: 400px; /* Set explicit width */
+/* Container for the Create Course form */
+.create-course-container {
+    max-width: 400px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f9f9f9;
-    box-sizing: border-box; /* Ensure padding and border are included in width */
   }
   
-  .login-container h2 {
+  .create-course-container h2 {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .login-form {
+  .create-course-container form {
     display: flex;
     flex-direction: column;
   }
   
-  .login-form label {
+  .create-course-container label {
     margin-bottom: 10px;
   }
   
-  .login-form input,
-  .login-form button {
-    width: 100%; /* Ensure inputs and buttons stretch to full width */
+  .create-course-container input {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    box-sizing: border-box; /* Include padding and border in width calculation */
   }
   
-  .login-form button {
+  .create-course-container button {
+    padding: 10px;
     background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 3px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
   }
   
-  .login-form button:hover {
+  .create-course-container button:hover {
     background-color: #0056b3;
   }
   
-  .error-message {
+  .create-course-container .error-message {
     color: red;
     font-weight: bold;
     margin-top: 10px;

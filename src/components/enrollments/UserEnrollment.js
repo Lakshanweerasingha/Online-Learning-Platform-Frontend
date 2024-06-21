@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/enrollments/UserEnrollment.css'; // Import your CSS file here
 
 export function UserEnrollment() {
   const [enrollments, setEnrollments] = useState([]);
@@ -13,33 +14,36 @@ export function UserEnrollment() {
         return;
       }
       try {
-        const response = await axios.get(`/users/${user.id}/enrollments`, {
-         
-        });
+        const response = await axios.get(`/users/${user.id}/enrollments`);
         setEnrollments(response.data.enrollments || []);
       } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else if (error.request) {
-          setErrorMessage('No response received from the server. Please try again later.');
-        } else {
-          setErrorMessage('An error occurred. Please try again.');
-        }
+        handleApiError(error);
       }
     };
 
     fetchEnrollments();
   }, []);
 
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
+
   return (
-    <div>
+    <div className="user-enrollment-container">
       <h1>My Enrollments</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <table>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <table className="enrollments-table">
         <thead>
           <tr>
             <th>ID</th>
-            <th>Course</th>
+            <th>Course Name</th>
+            <th>Course Description</th>
           </tr>
         </thead>
         <tbody>

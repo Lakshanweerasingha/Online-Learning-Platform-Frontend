@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
+import '../Css/enrollments/UpdateEnrollment.css'; // Import your CSS file here
 
 export function UpdateEnrollment({ enrollmentId, onUpdate }) {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ export function UpdateEnrollment({ enrollmentId, onUpdate }) {
         ]);
 
         setUsers(usersResponse.data.users || []);
-        setCourses(coursesResponse.data || []); // Assuming coursesResponse.data is an array of courses
+        setCourses(coursesResponse.data || []);
 
         setUserId(enrollmentResponse.data.user_id);
         setCourseId(enrollmentResponse.data.course_id);
@@ -52,9 +53,9 @@ export function UpdateEnrollment({ enrollmentId, onUpdate }) {
   };
 
   return (
-    <div>
+    <div className="update-enrollment-container">
       <h2>Update Enrollment</h2>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>User:</label>

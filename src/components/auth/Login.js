@@ -1,6 +1,9 @@
+// Login.js
+
 import React, { useState } from 'react';
 import axios from '../../axios'; // Adjust the import path as needed
 import { useNavigate } from 'react-router-dom';
+import '../Css/auth/login.css'; // Import your CSS file here
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -34,9 +37,9 @@ export function Login() {
   };
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
           <input
@@ -55,7 +58,7 @@ export function Login() {
         </div>
         <button type="submit">Login</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </div>
   );
 }

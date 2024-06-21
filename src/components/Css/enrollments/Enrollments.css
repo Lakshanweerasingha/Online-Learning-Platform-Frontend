@@ -1,0 +1,58 @@
+/* Container styling */
+.enrollments-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Error message styling */
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Table styling */
+.enrollments-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Table header styling */
+.enrollments-table th {
+  padding: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Table cell styling */
+.enrollments-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Actions container styling */
+.enrollments-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Button styling for actions */
+.enrollments-actions button {
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+.enrollments-actions button:hover {
+  background-color: #0056b3;
+}
