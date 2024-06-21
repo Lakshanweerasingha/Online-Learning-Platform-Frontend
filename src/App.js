@@ -9,12 +9,10 @@ import { DeleteCourse } from './components/courses/DeleteCourse';
 import { ListUsers } from './components/users/ListUsers';
 import { CreateUser } from './components/users/CreateUser';
 import { EditUser } from './components/users/EditUser';
-
-import { EnrollmentManagement } from './components/enrollments/EnrollmentManagement';
+import { Enrollments } from './components/enrollments/Enrollments';
 import { CreateEnrollment } from './components/enrollments/CreateEnrollment';
-import { EditEnrollment } from './components/enrollments/EditEnrollment';
-import { ViewEnrollment } from './components/enrollments/ViewEnrollment';
-
+import { UpdateEnrollment } from './components/enrollments/UpdateEnrollment';
+import { DeleteEnrollment } from './components/enrollments/DeleteEnrollment';
 
 function App() {
   return (
@@ -35,10 +33,10 @@ function App() {
             <Route path="/users/create" element={<CreateUser />} />
             <Route path="/users/:id/edit" element={<EditUser />} />
 
-            <Route path="/enrollments" element={<EnrollmentManagement />} />
+           <Route path="/enrollments" element={<Enrollments />} />
             <Route path="/enrollments/create" element={<CreateEnrollment />} />
-            <Route path="/enrollments/:id/edit" element={<EditEnrollment />} />
-            <Route path="/enrollments/:id/view" element={<ViewEnrollment />} />
+            <Route path="/enrollments/:id/update" element={<UpdateEnrollment />} />
+            <Route path="/enrollments/:id/delete" element={<DeleteEnrollment />} />
 
             {/* Add more routes as needed */}
           </Routes>
