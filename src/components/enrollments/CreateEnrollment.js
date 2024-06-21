@@ -15,21 +15,26 @@ export function CreateEnrollment({ onEnrollmentCreated }) {
           axios.get('/users'),
           axios.get('/courses')
         ]);
-        setUsers(usersResponse.data.users || []); // Ensure users is an array
-        setCourses(coursesResponse.data.courses || []); // Ensure courses is an array
+
+        setUsers(usersResponse.data.users || []);
+        setCourses(coursesResponse.data || []); // Assuming coursesResponse.data is an array of courses
       } catch (error) {
-        if (error.response) {
-          setErrorMessage(error.response.data.message);
-        } else if (error.request) {
-          setErrorMessage('No response received from the server. Please try again later.');
-        } else {
-          setErrorMessage('An error occurred. Please try again.');
-        }
+        handleApiError(error);
       }
     };
 
     fetchData();
   }, []);
+
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,13 +47,7 @@ export function CreateEnrollment({ onEnrollmentCreated }) {
       setSelectedUser('');
       setSelectedCourse('');
     } catch (error) {
-      if (error.response) {
-        setErrorMessage(error.response.data.message);
-      } else if (error.request) {
-        setErrorMessage('No response received from the server. Please try again later.');
-      } else {
-        setErrorMessage('An error occurred. Please try again.');
-      }
+      handleApiError(error);
     }
   };
 

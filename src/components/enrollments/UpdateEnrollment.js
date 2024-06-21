@@ -16,37 +16,52 @@ export function UpdateEnrollment({ enrollmentId, onUpdate }) {
           axios.get('/courses'),
           axios.get(`/enrollments/${enrollmentId}`)
         ]);
-        setUsers(usersResponse.data);
-        setCourses(coursesResponse.data);
+
+        setUsers(usersResponse.data.users || []);
+        setCourses(coursesResponse.data || []); // Assuming coursesResponse.data is an array of courses
+
         setUserId(enrollmentResponse.data.user_id);
         setCourseId(enrollmentResponse.data.course_id);
       } catch (error) {
-        setErrorMessage('Failed to load data.');
+        handleApiError(error);
       }
     };
+
     fetchData();
   }, [enrollmentId]);
+
+  const handleApiError = (error) => {
+    if (error.response) {
+      setErrorMessage(error.response.data.message);
+    } else if (error.request) {
+      setErrorMessage('No response received from the server. Please try again later.');
+    } else {
+      setErrorMessage('An error occurred. Please try again.');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.put(`/enrollments/${enrollmentId}`, { user_id: userId, course_id: courseId });
       onUpdate(response.data);
+      setErrorMessage('');
     } catch (error) {
-      setErrorMessage('Failed to update enrollment.');
+      handleApiError(error);
     }
   };
 
   return (
     <div>
       <h2>Update Enrollment</h2>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>User:</label>
           <select value={userId} onChange={(e) => setUserId(e.target.value)} required>
             <option value="">Select User</option>
             {users.map(user => (
-              <option key={user.id} value={user.id}>{user.name}</option>
+              <option key={user.id} value={user.id}>{user.first_name} {user.last_name}</option>
             ))}
           </select>
         </div>
@@ -61,7 +76,6 @@ export function UpdateEnrollment({ enrollmentId, onUpdate }) {
         </div>
         <button type="submit">Update Enrollment</button>
       </form>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
     </div>
   );
 }

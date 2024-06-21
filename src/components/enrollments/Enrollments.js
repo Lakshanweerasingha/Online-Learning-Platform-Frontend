@@ -12,7 +12,7 @@ export function Enrollments() {
     const fetchData = async () => {
       try {
         const response = await axios.get('/enrollments');
-        setEnrollments(response.data.enrollments); // Access the enrollments array directly
+        setEnrollments(response.data.enrollments || []); // Ensure to handle empty array if no enrollments
       } catch (error) {
         if (error.response) {
           setErrorMessage(error.response.data.message);
@@ -61,8 +61,8 @@ export function Enrollments() {
           {enrollments.map((enrollment) => (
             <tr key={enrollment.id}>
               <td>{enrollment.id}</td>
-              <td>{enrollment.user.first_name} {enrollment.user.last_name}</td>
-              <td>{enrollment.course.name}</td>
+              <td>{enrollment.user ? `${enrollment.user.first_name} ${enrollment.user.last_name}` : 'Unknown User'}</td>
+              <td>{enrollment.course ? enrollment.course.name : 'Unknown Course'}</td>
               <td>
                 <UpdateEnrollment enrollmentId={enrollment.id} onUpdate={handleEnrollmentUpdated} />
                 <DeleteEnrollment enrollmentId={enrollment.id} onDelete={handleEnrollmentDeleted} />
