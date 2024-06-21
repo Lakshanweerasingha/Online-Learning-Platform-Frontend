@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './components/auth/Login';
 import { Signup } from './components/auth/Signup';
+import { Logout } from './components/auth/Logout';
 import { AdminDashboard } from './components/AdminDashboard';
 import { UserDashboard } from './components/UserDashboard';
 import { Courses } from './components/courses/Courses';
@@ -30,6 +31,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/user-dashboard" element={<UserDashboard />} />
             <Route path="/courses" element={<Courses />} />
@@ -51,7 +53,7 @@ function App() {
           </Routes>
         </main>
         <footer className="App-footer">
-          <p>&copy; 2024 Your Company. All rights reserved.</p>
+          
         </footer>
       </div>
     </Router>
